@@ -1,9 +1,9 @@
 import '../styles/card.scss';
 import RadioButtonContent from './RadioButtonContent';
 
-function Card() {
+function Card(props) {
     return (
-        <div className="card">
+        <div className="card" onClick={props.cardClicked}>
             <RadioButtonContent />
         </div>
     )
