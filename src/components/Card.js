@@ -3,7 +3,10 @@ import RadioButtonContent from './RadioButtonContent';
 
 function Card(props) {
     return (
-        <div className="card" onClick={props.cardClicked}>
+        <div
+            className={'card ' + (props.selected ? 'selected': '')}
+            onClick={props.cardClicked}
+        >
             <RadioButtonContent />
         </div>
     )

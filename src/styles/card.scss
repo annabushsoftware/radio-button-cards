@@ -2,4 +2,8 @@
     width: 320px;
     border: 1px solid grey;
     margin: 16px;
+
+    &.selected {
+        background-color: red;
+    }
 }

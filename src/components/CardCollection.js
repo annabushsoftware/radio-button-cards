@@ -28,10 +28,21 @@ function CardCollection() {
         }
     }, [initialLoad, cardsData, setCardsData])
 
-    function cardClicked(key) {
-        console.log('card clicked ', key);
+    function cardClicked(id) {
+        console.log('card clicked ', id);
 
-//        setSelectedCard(key);
+        var copy = cardsData.map(card => {
+            var newCard = Object.assign(card, {});
+            if(id == card.id) {
+                newCard.selected = true;
+            } else {
+                newCard.selected = false;
+            }
+            return newCard;
+        })
+        console.log('copy: ', copy)
+
+        setCardsData(copy)
     }
 
     // effects
