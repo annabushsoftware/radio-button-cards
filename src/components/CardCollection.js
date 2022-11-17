@@ -10,9 +10,7 @@ function CardCollection() {
 
     // callbacks
     const populateCards = useCallback(() => {
-        console.log('in callback', initialLoad)
         if(initialLoad || cardsData.length == 0) {
-            console.log('fetching cards');
             // TODO - fetch cards from db
             setTimeout(() => {
                 setInitialLoad(false);
@@ -29,8 +27,6 @@ function CardCollection() {
     }, [initialLoad, cardsData, setCardsData])
 
     function cardClicked(id) {
-        console.log('card clicked ', id);
-
         var copy = cardsData.map(card => {
             var newCard = Object.assign(card, {});
             if(id == card.id) {
@@ -40,8 +36,6 @@ function CardCollection() {
             }
             return newCard;
         })
-        console.log('copy: ', copy)
-
         setCardsData(copy)
     }
 
