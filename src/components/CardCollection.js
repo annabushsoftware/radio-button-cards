@@ -1,35 +1,35 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import '../styles/card-collection.scss';
 import Card from './Card';
 
-class CardCollection extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedCard: null
+function CardCollection() {
+    const [cards, setCards] = useState([]);
+    const [selectedCard, setSelectedCard] = useState(null);
+
+    console.log('rendering')
+
+    useEffect(() => {
+        if(cards.length == 0) {
+            console.log('getting cards')
+            populateCards();
         }
-    }
+    });
 
-    render() {
-        console.log('rendering')
-        var cardCollection = this.getCards();
-        var cards = this.createCards(cardCollection);
+    return (
+        <div className="card-collection">
+            {cards}
+        </div>
+    )
 
-        return (
-            <div className="card-collection">
-                {cards}
-            </div>
-        )
-    }
-
-    getCards() {
+    function populateCards() {
         // TODO - fetch cards from db
-        var cardCollection = [];
-
-        return cardCollection;
+        setTimeout(() => {
+            var cardCollection = [];
+            createCards(cardCollection);
+        }, 3 * 1000);
     }
 
-    createCards(cardCollection) {
+    function createCards(cardCollection) {
         var cards = [];
 
         for(var i = 0; i < 10; i++) {
@@ -37,18 +37,17 @@ class CardCollection extends React.Component {
             cards.push(
                 <Card
                     key={key}
-                    cardClicked={() => this.cardClicked(key)}
+                    cardClicked={() => cardClicked(key)}
                 />);
         }
 
-        return cards;
+        setCards(cards);
+        setSelectedCard(null);
     }
 
-    cardClicked(key) {
+    function cardClicked(key) {
         console.log('card clicked ', key)
-        this.setState({ selectedCard: key });
-
-        console.log('state:', this.state)
+        setSelectedCard(key);
     }
 }
 
